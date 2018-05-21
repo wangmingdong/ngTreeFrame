@@ -10,6 +10,8 @@
   "author": "wangmingdong",
   "license": "ISC",
   "dependencies": {
-    "eslint": "^4.19.1"
+    "eslint": "^4.19.1",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.2"
   }
 }
