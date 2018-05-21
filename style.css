@@ -14,13 +14,20 @@ margin: 0 auto; }
 
 .tree-frame ul {
 padding-top: 20px;
+display: -webkit-box;
+display: -webkit-flex;
+display: -moz-box;
+display: -moz-flex;
+display: -ms-flexbox;
+display: flex;
 position: relative;
 transition: all 0.5s;
 -webkit-transition: all 0.5s;
 -moz-transition: all 0.5s; }
 
 .tree-frame li {
-float: left;
+float: none;
+/* float: left; */
 text-align: center;
 list-style-type: none;
 position: relative;
@@ -53,7 +60,7 @@ display: none; }
 display: none; }
 
 .tree-frame li:only-child {
-padding: 10px; }
+padding: 0; }
 
 .tree-frame li:first-child::before, .tree-frame li:last-child::after {
 border: 0 none; }
@@ -94,8 +101,9 @@ position: relative;
 cursor: pointer;
 }
 .tree-frame li .tree-node-title .node-menu {
-    z-index: 9999;
+    z-index: 10;
     text-align: center;
+    white-space: nowrap;
     padding: 5px;
     top: 0;
     right: -100px;

@@ -10,14 +10,11 @@
 	</head>
 	<body>
 		<div class="col-md-offset-0 col-md-12" ng-controller="MenuController">
-
-			<div class="tree-frame">
-				<tree-frame tree-data="treeObj" value-field='id'
-				bg-color-config="treeBgColorConfig"
-				bg-color-for-level="bgColorForLevelConfig"
-				tree-node-click="treeNodeClick">
-				</tree-frame>
-			</div>
+			<tree-frame tree-data="treeObj"
+			bg-color-config="treeBgColorConfig"
+			bg-color-for-level="bgColorForLevelConfig"
+			tree-node-click="treeNodeClick">
+			</tree-frame>
 	    </div>
 	</body>
 </html>

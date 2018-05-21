@@ -1,7 +1,7 @@
 (function(window, angular, undefined){
     'use strict';
 	
-    var bd = angular.module("ng.dropdown", []);
+    var bd = angular.module("ng.treeFrame", []);
     /*定义全局变量*/
     bd.constant('ngTreeFrameCfg', {
         display: 'DropDown',
@@ -15,6 +15,7 @@
     /*定义模板缓存默认的模板和多选模板*/
     bd.run(['$templateCache', function($templateCache){
         $templateCache.put('defaultTemplate',[
+            '<div class="tree-frame">',
             '<ul class="tree-frame-ul">',
             '<li class="">',
             '<div class="tree-node-title">',
@@ -26,7 +27,8 @@
             '<li ng-repeat="item in treeData.child" ng-include="', "'",'ngTreeFrame.html', "'",'"></li>',
             '</ul>',
             '</li>',
-            '</ul>'
+            '</ul>',
+            '</div>'
         ].join(''));
     }]);
     bd.controller("ngTreeFrameController", 
