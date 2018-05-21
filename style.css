@@ -3,7 +3,7 @@
 
 .tree-frame {
     margin: 0;
-    padding: 0;
+    padding: 10px;
     list-style: none;
     overflow: scroll; 
 }
