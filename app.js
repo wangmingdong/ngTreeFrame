@@ -275,6 +275,12 @@ angular.module("demoApp", ['ng.treeFrame'])
             color: '#000000'
         }];
 
+        // 配置字段
+        $scope.treeFrameConfig = {
+            id: 'id',
+            parentId: 'parentId'
+        }
+
         // 过去选中的节点
         $scope.treeNodeClick = function (node) {
             console.log(node);

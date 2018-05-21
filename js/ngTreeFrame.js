@@ -48,7 +48,9 @@
                 // 根据字段某属性区分颜色
                 bgColorConfig: '=',
                 // 根据层级区分颜色
-                bgColorForLevel: '='
+                bgColorForLevel: '=',
+                // 关键字段配置
+                treeFrameConfig: '='
             },
             // require: ['ngTreeFrame','?ngModel'],
             controller: "ngTreeFrameController", 
@@ -60,10 +62,11 @@
             link: function(scope, el, attr, ctrls){
                 scope._bgColorConfig = scope.bgColorConfig;
                 scope._bgColorForLevel = scope.bgColorForLevel;
+                var treeCfgObj = scope.treeFrameConfig;
 
                 // 获取dom节点
                 function getNodeById(item) {
-                    var elem = angular.element(document.getElementById('node' + item.id));
+                    var elem = angular.element(document.getElementById('node' + item[treeCfgObj.id]));
                     return elem;
                 }
 
@@ -78,6 +81,7 @@
                             // 配置节点背景色
                             elem.css('background', colorArray[j].bgColor);
                             elem.css('color', colorArray[j].color || '#000000');
+                            elem.css('border', '1px solid ' + (colorArray[j].borderColor || '#dddddd'));
                         }
                     }
                 }
@@ -85,12 +89,14 @@
                 // 根据层级区分颜色
                 function chargeColorByLevel(item, elem) {
                     // 顶级父
-                    if (!item.parentId) {
+                    if (!item[treeCfgObj.parentId]) {
                         elem.css('background', scope.bgColorForLevel[0].bgColor);
                         elem.css('color', scope.bgColorForLevel[0].color || '#000000');
+                        elem.css('border', '1px solid ' + (scope.bgColorForLevel[0].borderColor || '#dddddd'));
                     } else {
                         elem.css('background', scope.bgColorForLevel[1].bgColor);
                         elem.css('color', scope.bgColorForLevel[1].color || '#000000');
+                        elem.css('border', '1px solid ' + (scope.bgColorForLevel[1].borderColor || '#dddddd'));
                     }
                 }
 
@@ -124,7 +130,7 @@
                     // $timeout用于ng-include ngTreeFrame.html
                     $timeout(function () {
                         formatTreeData(scope.treeData);
-                    });
+                    }, 100);
                 };
                 scope.init();
 
