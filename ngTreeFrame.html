@@ -1,0 +1,13 @@
+
+<div class="tree-node-title">
+    <div class="node-menu" id="node{{item.id}}" ng-click="selectNode('treeNodeClick', item, $event)">
+        {{item.name}}
+    </div>
+</div>
+<ul ng-if="item.child.length">
+    <!-- {{item.name}} -->
+    <li ng-repeat="item in item.child" ng-include="'./ngTreeFrame.html'">
+        
+        <!-- <div ng-repeat="item in item.child" ng-include="'ngTreeFrame.html"></div> -->
+    </li>
+</ul>

@@ -1,0 +1,25 @@
+<html ng-app="demoApp">
+	<head>
+		<meta charset="UTF-8">
+		<title>bsDropdown</title>
+		<!-- <link rel="stylesheet" href="js/bootstrap.min.css"> -->
+		<script src="js/angular.min.js"></script>
+		<!-- <script src="js/bsDropdown.js"></script> -->
+		<script src="js/ngTreeFrame.js"></script>
+		<script src="js/app.js"></script>
+		<style>
+		</style>
+	</head>
+	<body>
+		<div class="col-md-offset-0 col-md-12" ng-controller="MenuController">
+
+			<div class="tree-frame">
+				<tree-frame tree-data="treeObj" value-field='id'
+				bg-color-config="treeBgColorConfig"
+				bg-color-for-level="bgColorForLevelConfig"
+				tree-node-click="treeNodeClick">
+				</tree-frame>
+			</div>
+	    </div>
+	</body>
+</html>

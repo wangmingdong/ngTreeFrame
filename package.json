@@ -1,0 +1,11 @@
+{
+  "name": "ng-tree-frame",
+  "version": "1.0.0",
+  "description": "基于AngularJS的横向树结构插件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wangmingdong",
+  "license": "ISC"
+}
