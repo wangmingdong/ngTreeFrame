@@ -20,6 +20,7 @@
             '<li class="">',
             '<div class="tree-node-title">',
             '<div class="node-menu" id="node{{treeData.id}}" ng-click="selectNode(', "'treeNodeClick'", ', treeData, $event)">',
+            '<img ng-if="item.treeFrameIcon" class="node-icon" ng-src="{{item.treeFrameIcon}}" alt="icon">',
             '{{treeData.name}}',
             '</div>',
             '</div>',
@@ -111,7 +112,7 @@
                             chargeColorByLevel(nodeData, parentNode);
                         }
                         if (scope.TREE_CFG_OBJ.icon) {
-                            nodeData.icon = nodeData[scope.TREE_CFG_OBJ.icon];
+                            nodeData.treeFrameIcon = nodeData[scope.TREE_CFG_OBJ.icon];
                         }
                         for (var i = 0; i < nodeData.child.length; i++) {
                             if (nodeData.child[i]) {
@@ -124,7 +125,7 @@
                                 }
                                 // icon赋值
                                 if (scope.TREE_CFG_OBJ.icon) {
-                                    nodeData.child[i].icon = nodeData.child[i][scope.TREE_CFG_OBJ.icon];
+                                    nodeData.child[i].treeFrameIcon = nodeData.child[i][scope.TREE_CFG_OBJ.icon];
                                 }
                                 // console.log(nodeData.child[i])
                                 formatTreeData(nodeData.child[i]);
