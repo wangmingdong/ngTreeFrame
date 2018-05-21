@@ -1,7 +1,10 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
+var minifycss = require('gulp-minify-css');
+var rename = require('gulp-rename');
+var uglify = require('gulp-uglify');
 
-gulp.task('default', ['eslint'], function() {
+gulp.task('default', ['eslint', 'minCss', 'jscompress'], function() {
     // 将你的默认的任务代码放在这
     
 });
@@ -14,4 +17,22 @@ gulp.task('eslint',function(){
 
         .pipe(eslint.format());
 
+});
+
+gulp.task('minCss', function() {
+    return gulp.src('/*.css')
+    //   .pipe(gulp.dest('/'))
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(minifycss())
+      .pipe(gulp.dest('dist/css'));
+  });
+
+  gulp.task('jscompress', function() {
+    // 1. 找到文件
+   return gulp.src('js/ngTreeFrame.js')
+    // 2. 压缩文件
+        .pipe(uglify())
+        .pipe(rename({ suffix: '.min' }))
+        // 3. 另存压缩后的文件
+        .pipe(gulp.dest('dist/js'));
 });

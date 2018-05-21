@@ -23,7 +23,7 @@
             '</div>',
             '</div>',
             '<ul class="ng-tree-frame">',
-            '<li ng-repeat="item in treeData.child" ng-include="', "'",'./ngTreeFrame.html', "'",'"></li>',
+            '<li ng-repeat="item in treeData.child" ng-include="', "'",'ngTreeFrame.html', "'",'"></li>',
             '</ul>',
             '</li>',
             '</ul>'
@@ -58,7 +58,6 @@
             link: function(scope, el, attr, ctrls){
                 scope._bgColorConfig = scope.bgColorConfig;
                 scope._bgColorForLevel = scope.bgColorForLevel;
-                console.log(scope._bgColorConfig);
 
                 // 获取dom节点
                 function getNodeById(item) {

@@ -12,6 +12,9 @@
   "dependencies": {
     "eslint": "^4.19.1",
     "gulp": "^3.9.1",
-    "gulp-eslint": "^4.0.2"
+    "gulp-eslint": "^4.0.2",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.3",
+    "gulp-uglify": "^3.0.0"
   }
 }
