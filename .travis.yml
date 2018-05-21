@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - '9.11.1'
+before_install: npm update -g npm
+install: 
+  - npm install
+  - gem install github_changelog_generator
+script:
+  - npm run lint
+before_deploy:
+  - github_changelog_generator
+  - git config user.name 'wangmingdong'
+  - git config user.eamil '540042281@qq.com'
+  - git add .
+  - git commit -m 'travisa automatic generate changelog'
+  - git push origin HEAD:master
+deploy:
+  # provider: releases
+  # api_key: $GITHUB_TOKEN
+  # skip_cleanup: true

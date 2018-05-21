@@ -4,8 +4,12 @@
   "description": "基于AngularJS的横向树结构插件",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint js/ngTreeFrame.js"
   },
   "author": "wangmingdong",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^4.19.1"
+  }
 }
