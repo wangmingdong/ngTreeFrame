@@ -1,6 +1,7 @@
 
 <div class="tree-node-title">
     <div class="node-menu" id="node{{item.id}}" ng-click="selectNode('treeNodeClick', item, $event)">
+        <img ng-if="item.icon" class="node-icon" ng-src="{{item.icon}}" alt="icon">
         {{item.name}}
     </div>
 </div>

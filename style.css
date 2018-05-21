@@ -120,6 +120,9 @@ cursor: pointer;
     background-color: #D2E6FF;
     transition: all .3s;
 }
+.tree-frame li .tree-node-title .node-menu .node-icon{
+    width: 16px;
+}
 .tree-frame li .tree-node-title .node-menu:hover {
     transform: scale(1.1);
     /* font-size: 20px; */

@@ -62,11 +62,11 @@
             link: function(scope, el, attr, ctrls){
                 scope._bgColorConfig = scope.bgColorConfig;
                 scope._bgColorForLevel = scope.bgColorForLevel;
-                var treeCfgObj = scope.treeFrameConfig;
+                scope.TREE_CFG_OBJ = scope.treeFrameConfig;
 
                 // 获取dom节点
                 function getNodeById(item) {
-                    var elem = angular.element(document.getElementById('node' + item[treeCfgObj.id]));
+                    var elem = angular.element(document.getElementById('node' + item[scope.TREE_CFG_OBJ.id]));
                     return elem;
                 }
 
@@ -89,7 +89,7 @@
                 // 根据层级区分颜色
                 function chargeColorByLevel(item, elem) {
                     // 顶级父
-                    if (!item[treeCfgObj.parentId]) {
+                    if (!item[scope.TREE_CFG_OBJ.parentId]) {
                         elem.css('background', scope.bgColorForLevel[0].bgColor);
                         elem.css('color', scope.bgColorForLevel[0].color || '#000000');
                         elem.css('border', '1px solid ' + (scope.bgColorForLevel[0].borderColor || '#dddddd'));
@@ -110,6 +110,9 @@
                         if (scope._bgColorForLevel) {
                             chargeColorByLevel(nodeData, parentNode);
                         }
+                        if (scope.TREE_CFG_OBJ.icon) {
+                            nodeData.icon = nodeData[scope.TREE_CFG_OBJ.icon];
+                        }
                         for (var i = 0; i < nodeData.child.length; i++) {
                             if (nodeData.child[i]) {
                                 var $ele = getNodeById(nodeData.child[i]);
@@ -118,6 +121,10 @@
                                 }
                                 if (scope._bgColorForLevel) {
                                     chargeColorByLevel(nodeData.child[i], $ele);
+                                }
+                                // icon赋值
+                                if (scope.TREE_CFG_OBJ.icon) {
+                                    nodeData.child[i].icon = nodeData.child[i][scope.TREE_CFG_OBJ.icon];
                                 }
                                 // console.log(nodeData.child[i])
                                 formatTreeData(nodeData.child[i]);

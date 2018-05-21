@@ -152,7 +152,8 @@ angular.module("demoApp", ['ng.treeFrame'])
                                             "name":"666",
                                             "parentId":777,
                                             "type":0,
-                                            "userName":""
+                                            "userName":"",
+                                            "icon": 'icon.png'
                                         },
                                         {
                                             "child":[],
@@ -188,7 +189,8 @@ angular.module("demoApp", ['ng.treeFrame'])
                                             "name":"666",
                                             "parentId":777,
                                             "type":0,
-                                            "userName":""
+                                            "userName":"",
+                                            "icon": 'icon.png'
                                         },
                                         {
                                             "child":[],
@@ -239,7 +241,8 @@ angular.module("demoApp", ['ng.treeFrame'])
                     "name":"444",
                     "parentId":464,
                     "type":0,
-                    "userName":""
+                    "userName":"",
+                    "icon": 'icon.png'
                 }
             ],
             "des":"123",
@@ -247,7 +250,8 @@ angular.module("demoApp", ['ng.treeFrame'])
             "name":"213",
             "parentId":0,
             "type":0,
-            "userName":""
+            "userName":"",
+            "icon": 'icon.png'
         };
         // 根据某一属性key区分背景色
         $scope.treeBgColorConfig = {
@@ -278,7 +282,8 @@ angular.module("demoApp", ['ng.treeFrame'])
         // 配置字段
         $scope.treeFrameConfig = {
             id: 'id',
-            parentId: 'parentId'
+            parentId: 'parentId',
+            icon: 'icon'
         }
 
         // 过去选中的节点
