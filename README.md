@@ -18,6 +18,8 @@ Angular
     tree-node-click="treeNodeClick">
 </tree-frame>
 ```
+
+### API
 __treeBgColorConfig__:
 根据某一属性key区分背景色，例：
 ``` js
