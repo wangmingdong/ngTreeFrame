@@ -4,7 +4,12 @@
         <img ng-if="item.treeFrameIcon" class="node-icon" ng-src="{{item.treeFrameIcon}}" alt="icon">
         {{item.name}}
     </div>
-    <div class="tree-menu" ng-if="selectNodeData.id == item.id && !item.disableTreeMenu" ng-hide="hideMenu">
+    <div
+     ng-class="{
+         'tree-menu': true, 
+         'fadeInLeft': selectNodeData.id == item.id && !item.disableTreeMenu && !hideMenu
+        }"
+          ng-if="selectNodeData.id == item.id && !item.disableTreeMenu" ng-hide="hideMenu">
         <div class="menu-item" ng-repeat="menuItem in _treeConfigObj.menuConfig" ng-click="selectMenu(item, menuItem)">{{menuItem.text}}</div>
     </div>
 </div>
