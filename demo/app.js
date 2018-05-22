@@ -175,12 +175,30 @@ angular.module("demoApp", ['ngTreeFrame'])
             color: '#000000'
         }];
 
+        // 格式化数据(递归)
+        function fmtTreeData(treeData) {
+            if (treeData.child && treeData.child.length) {
+                for (var i = 0; i < treeData.child.length; i++) {
+                    if (new RegExp('^666').test(treeData.child[i].id)) {
+                        treeData.child[i].disableTreeMenu = true;
+                    }
+                    fmtTreeData(treeData.child[i]);
+                }
+            }
+        }
+
         // 配置字段
         $scope.treeFrameConfig = {
             id: 'id',
-            parentId: 'parentId',
+            parentId: 'parentId',   // 父节点唯一标识
             icon: 'icon',
             parentIcon: './../icon.png',
+            formatTreeData: function(treeData) {
+                // 对于不显示菜单的字段配置 disableTreeMenu: true
+                fmtTreeData(treeData);
+                return treeData;
+            },
+            // menuAvailable: matchId,    // 匹配标识，是否弹出菜单
             // 菜单配置
             menuConfig:[
                 {
@@ -216,7 +234,7 @@ angular.module("demoApp", ['ngTreeFrame'])
             ]
         }
 
-        // 过去选中的节点
+        // 选中的节点
         $scope.treeNodeClick = function (node) {
             console.log(node);
         };

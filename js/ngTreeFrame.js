@@ -18,7 +18,7 @@
                                 '<img ng-if="_treeConfigObj.parentIcon" class="node-icon" ng-src="{{_treeConfigObj.parentIcon}}" alt="icon">',
                                 '{{treeData.name}}',
                             '</div>',
-                            '<div class="tree-menu" ng-if="selectNodeData.id == treeData.id" ng-hide="hideMenu">',
+                            '<div class="tree-menu" ng-if="selectNodeData.id == treeData.id && !treeData.disableTreeMenu" ng-hide="hideMenu">',
                                 '<div class="menu-item" ng-repeat="menuItem in _treeConfigObj.menuConfig" ng-click="selectMenu(treeData, menuItem)">{{menuItem.text}}</div>',
                             '</div>',
                         '</div>',
@@ -101,7 +101,7 @@
                 }
 
                 // 数据格式化，添加背景色和文字色
-                function formatTreeData(nodeData) {
+                function fmtTreeData(nodeData) {
                     if (nodeData && nodeData.child && nodeData.child.length) {
                         var parentNode = getNodeById(nodeData);
                         if (scope._bgColorConfig) {
@@ -127,7 +127,7 @@
                                     nodeData.child[i].treeFrameIcon = nodeData.child[i][scope._treeConfigObj.icon];
                                 }
                                 // console.log(nodeData.child[i])
-                                formatTreeData(nodeData.child[i]);
+                                fmtTreeData(nodeData.child[i]);
                             }
                         }
                     }
@@ -154,7 +154,10 @@
                     scope.$watch('treeData', function (newValue, oldValue) {
                         if (newValue) {
                             $timeout(function () {
-                                formatTreeData(newValue);
+                                if (scope._treeConfigObj.formatTreeData) {
+                                    scope._treeConfigObj.formatTreeData(newValue);
+                                }
+                                fmtTreeData(newValue);
                             }, 100);
                         }
                     })
