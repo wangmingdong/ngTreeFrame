@@ -23,7 +23,7 @@
                             '</div>',
                         '</div>',
                         '<ul class="ng-tree-frame">',
-                            '<li ng-repeat="item in treeData.child" ng-include="', "'",'/html/ngTreeFrame.html', "'",'"></li>',
+                            '<li ng-repeat="item in treeData.child" ng-include="', "'",'./../html/ngTreeFrame.html', "'",'"></li>',
                         '</ul>',
                     '</li>',
                 '</ul>',
@@ -190,4 +190,4 @@ var dynamicLoading = {
         head.appendChild(script);
     }
 };
-dynamicLoading.css("/style/style.css");
+dynamicLoading.css("./../style/style.css");

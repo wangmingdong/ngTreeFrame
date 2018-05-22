@@ -133,7 +133,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                         "parentId":464,
                         "type":0,
                         "userName":"",
-                        "icon": '/icon.png'
+                        "icon": './../icon.png'
                     }
                 ],
                 "des":"123",
@@ -142,7 +142,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                 "parentId":0,
                 "type":0,
                 "userName":"",
-                "icon": 'icon.png'
+                "icon": './../icon.png'
             };
             // $timeout(function() {
             //     $scope.treeObj = {};
@@ -180,7 +180,7 @@ angular.module("demoApp", ['ngTreeFrame'])
             id: 'id',
             parentId: 'parentId',
             icon: 'icon',
-            parentIcon: '/icon.png',
+            parentIcon: './../icon.png',
             // 菜单配置
             menuConfig:[
                 {
