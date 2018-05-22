@@ -6,10 +6,10 @@
 
 .tree-frame {
   margin: 0;
-  padding: 10px;
   list-style: none;
-  overflow: scroll;
-  font-size: 14px; }
+  overflow: auto;
+  font-size: 14px;
+  height: 100%; }
   .tree-frame > ul > li {
     display: block;
     margin: 0 auto; }

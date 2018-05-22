@@ -3,10 +3,11 @@
 
 .tree-frame {
     margin: 0;
-    padding: 10px;
+    // padding: 10px;
     list-style: none;
-    overflow: scroll; 
+    overflow: auto; 
     font-size: 14px;
+    height: 100%;
 
     & > ul > li{
         display: block;
