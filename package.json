@@ -15,6 +15,7 @@
     "gulp-eslint": "^4.0.2",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.3",
+    "gulp-sass": "^4.0.1",
     "gulp-uglify": "^3.0.0"
   }
 }

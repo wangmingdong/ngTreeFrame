@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("demoApp", ['ng.treeFrame'])
+angular.module("demoApp", ['ngTreeFrame'])
     .controller("MenuController", function($scope, $timeout){
         // $scope.treeObj = {
         // 	name: '项目1',
@@ -86,7 +86,7 @@ angular.module("demoApp", ['ng.treeFrame'])
                                             {
                                                 "child":[],
                                                 "des":"",
-                                                "id":6626,
+                                                "id":662326,
                                                 "name":"666",
                                                 "parentId":777,
                                                 "type":0,
@@ -95,7 +95,7 @@ angular.module("demoApp", ['ng.treeFrame'])
                                             {
                                                 "child":[],
                                                 "des":"",
-                                                "id":6626,
+                                                "id":662546,
                                                 "name":"666",
                                                 "parentId":777,
                                                 "type":0,
@@ -154,7 +154,7 @@ angular.module("demoApp", ['ng.treeFrame'])
                                                 "parentId":777,
                                                 "type":0,
                                                 "userName":"",
-                                                "icon": 'icon.png'
+                                                "icon": '/icon.png'
                                             },
                                             {
                                                 "child":[],
@@ -191,7 +191,7 @@ angular.module("demoApp", ['ng.treeFrame'])
                                                 "parentId":777,
                                                 "type":0,
                                                 "userName":"",
-                                                "icon": 'icon.png'
+                                                "icon": '/icon.png'
                                             },
                                             {
                                                 "child":[],
@@ -243,7 +243,7 @@ angular.module("demoApp", ['ng.treeFrame'])
                         "parentId":464,
                         "type":0,
                         "userName":"",
-                        "icon": 'icon.png'
+                        "icon": '/icon.png'
                     }
                 ],
                 "des":"123",
@@ -290,7 +290,40 @@ angular.module("demoApp", ['ng.treeFrame'])
             id: 'id',
             parentId: 'parentId',
             icon: 'icon',
-            parentIcon: 'icon.png'
+            parentIcon: '/icon.png',
+            // 菜单配置
+            menuConfig:[
+                {
+                    text: '创建子机构',
+                    callback: function(node) {
+                        console.log(node)
+                    }
+                },
+                {
+                    text: '园所管理',
+                    callback: function(node) {
+
+                    }
+                },
+                {
+                    text: '查看',
+                    callback: function(node) {
+
+                    }
+                },
+                {
+                    text: '编辑',
+                    callback: function(node) {
+
+                    }
+                },
+                {
+                    text: '删除',
+                    callback: function(node) {
+
+                    }
+                },
+            ]
         }
 
         // 过去选中的节点

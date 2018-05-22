@@ -1,0 +1,13 @@
+
+<div class="tree-node-title">
+    <div ng-class="{'node-menu': true, 'selected': selectNodeData.id == item.id}" id="node{{item.id}}" ng-click="selectNode('treeNodeClick', item, $event)">
+        <img ng-if="item.treeFrameIcon" class="node-icon" ng-src="{{item.treeFrameIcon}}" alt="icon">
+        {{item.name}}
+    </div>
+    <div class="tree-menu" ng-if="selectNodeData.id == item.id" ng-hide="hideMenu">
+        <div class="menu-item" ng-repeat="menuItem in _treeConfigObj.menuConfig" ng-click="selectMenu(item, menuItem)">{{menuItem.text}}</div>
+    </div>
+</div>
+<ul ng-if="item.child.length">
+    <li ng-repeat="item in item.child" ng-include="'/html/ngTreeFrame.html'"></li>
+</ul>

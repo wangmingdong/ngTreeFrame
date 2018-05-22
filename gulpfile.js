@@ -3,8 +3,9 @@ var eslint = require('gulp-eslint');
 var minifycss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
+var sass = require('gulp-sass');
 
-gulp.task('default', ['eslint', 'minCss', 'jscompress'], function() {
+gulp.task('default', ['eslint', 'sassToCss', 'minCss', 'jscompress'], function() {
     // 将你的默认的任务代码放在这
     
 });
@@ -20,12 +21,22 @@ gulp.task('eslint',function(){
 });
 
 gulp.task('minCss', function() {
-    return gulp.src('/*.css')
+    return gulp.src('style/*.css')
     //   .pipe(gulp.dest('/'))
       .pipe(rename({ suffix: '.min' }))
       .pipe(minifycss())
       .pipe(gulp.dest('dist/css'));
   });
+
+  gulp.task('sassToCss', function(){
+    return gulp.src('style/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('style/'))
+    });
+
+    gulp.task('watch',function(){
+        gulp.watch('./style/*.scss',['sassToCss']);
+    })
 
   gulp.task('jscompress', function() {
     // 1. 找到文件

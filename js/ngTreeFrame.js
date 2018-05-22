@@ -1,29 +1,32 @@
 (function(window, angular, undefined){
     'use strict';
 	
-    var bd = angular.module("ng.treeFrame", []);
+    var bd = angular.module("ngTreeFrame", []);
     /*定义全局变量*/
     bd.constant('ngTreeFrameCfg', {
-        treeHtml: 'ngTreeFrame.html'
+        // treeHtml: 'ngTreeFrame.html'
     });
     /*定义模板缓存默认的模板和多选模板*/
     bd.run(['$templateCache', function($templateCache){
         $templateCache.put('defaultTemplate',[
-            '<div class="tree-frame" ng-if="treeData.id">',
-            '<ul class="tree-frame-ul">',
-            '<li class="">',
-            '<div class="tree-node-title">',
-            '<div class="node-menu" id="node{{treeData.id}}" ng-click="selectNode(', "'treeNodeClick'", ', treeData, $event)">',
-            '<img ng-if="!TREE_CFG_OBJ.parentIcon && item.treeFrameIcon" class="node-icon" ng-src="{{item.treeFrameIcon}}" alt="icon">',
-            '<img ng-if="TREE_CFG_OBJ.parentIcon" class="node-icon" ng-src="{{TREE_CFG_OBJ.parentIcon}}" alt="icon">',
-            '{{treeData.name}}',
-            '</div>',
-            '</div>',
-            '<ul class="ng-tree-frame">',
-            '<li ng-repeat="item in treeData.child" ng-include="', "'",'ngTreeFrame.html', "'",'"></li>',
-            '</ul>',
-            '</li>',
-            '</ul>',
+            '<div class="tree-frame" ng-if="treeData.id" ng-click="treeMenuStatus($event)">',
+                '<ul class="tree-frame-ul">',
+                    '<li class="">',
+                        '<div class="tree-node-title">',
+                            '<div ng-class="{', "'node-menu': true, 'selected': selectNodeData.id == treeData.id}", '" id="node{{treeData.id}}" ng-click="selectNode(', "'treeNodeClick'", ', treeData, $event)">',
+                                '<img ng-if="!_treeConfigObj.parentIcon && item.treeFrameIcon" class="node-icon" ng-src="{{item.treeFrameIcon}}" alt="icon">',
+                                '<img ng-if="_treeConfigObj.parentIcon" class="node-icon" ng-src="{{_treeConfigObj.parentIcon}}" alt="icon">',
+                                '{{treeData.name}}',
+                            '</div>',
+                            '<div class="tree-menu" ng-if="selectNodeData.id == treeData.id" ng-hide="hideMenu">',
+                                '<div class="menu-item" ng-repeat="menuItem in _treeConfigObj.menuConfig" ng-click="selectMenu(treeData, menuItem)">{{menuItem.text}}</div>',
+                            '</div>',
+                        '</div>',
+                        '<ul class="ng-tree-frame">',
+                            '<li ng-repeat="item in treeData.child" ng-include="', "'",'/html/ngTreeFrame.html', "'",'"></li>',
+                        '</ul>',
+                    '</li>',
+                '</ul>',
             '</div>'
         ].join(''));
     }]);
@@ -32,6 +35,7 @@
 			
             // 选中节点的callback,获取选中节点数据
             $scope.selectNode = function(callback, item, $event){
+                $scope.selectNodeData = item;
 				($scope[callback] || angular.noop)(item, $event);
 			};
         }]);
@@ -58,11 +62,11 @@
             link: function(scope, el, attr, ctrls){
                 scope._bgColorConfig = scope.bgColorConfig;
                 scope._bgColorForLevel = scope.bgColorForLevel;
-                scope.TREE_CFG_OBJ = scope.treeFrameConfig || {};
+                scope._treeConfigObj = scope.treeFrameConfig || {};
 
                 // 获取dom节点
                 function getNodeById(item) {
-                    var elem = angular.element(document.getElementById('node' + scope.TREE_CFG_OBJ.id));
+                    var elem = angular.element(document.getElementById('node' + scope._treeConfigObj.id));
                     return elem;
                 }
 
@@ -85,7 +89,7 @@
                 // 根据层级区分颜色
                 function chargeColorByLevel(item, elem) {
                     // 顶级父
-                    if (!item[scope.TREE_CFG_OBJ.parentId]) {
+                    if (!item[scope._treeConfigObj.parentId]) {
                         elem.css('background', scope.bgColorForLevel[0].bgColor);
                         elem.css('color', scope.bgColorForLevel[0].color || '#000000');
                         elem.css('border', '1px solid ' + (scope.bgColorForLevel[0].borderColor || '#dddddd'));
@@ -106,8 +110,8 @@
                         if (scope._bgColorForLevel) {
                             chargeColorByLevel(nodeData, parentNode);
                         }
-                        if (scope.TREE_CFG_OBJ.icon) {
-                            nodeData.treeFrameIcon = nodeData[scope.TREE_CFG_OBJ.icon];
+                        if (scope._treeConfigObj.icon) {
+                            nodeData.treeFrameIcon = nodeData[scope._treeConfigObj.icon];
                         }
                         for (var i = 0; i < nodeData.child.length; i++) {
                             if (nodeData.child[i]) {
@@ -119,14 +123,30 @@
                                     chargeColorByLevel(nodeData.child[i], $ele);
                                 }
                                 // icon赋值
-                                if (scope.TREE_CFG_OBJ.icon) {
-                                    nodeData.child[i].treeFrameIcon = nodeData.child[i][scope.TREE_CFG_OBJ.icon];
+                                if (scope._treeConfigObj.icon) {
+                                    nodeData.child[i].treeFrameIcon = nodeData.child[i][scope._treeConfigObj.icon];
                                 }
                                 // console.log(nodeData.child[i])
                                 formatTreeData(nodeData.child[i]);
                             }
                         }
                     }
+                }
+
+                // 点击出现菜单
+                angular.element(document).bind('click', function(event) {
+                    // 操作dom需要apply
+                    $timeout(function () {
+                        var classNameArray = angular.element(event.target)[0].className;
+                        var showCondition = classNameArray.indexOf('node-menu') > -1 || classNameArray.indexOf('node-icon') > -1;
+                        scope.hideMenu = !showCondition;
+                        event.stopPropagation();
+                    });
+                });
+
+                // 选中菜单触发某个事件
+                scope.selectMenu = function(node, menuItem) {
+                    menuItem.callback(node);
                 }
 
                 scope.init = function () {
@@ -170,4 +190,4 @@ var dynamicLoading = {
         head.appendChild(script);
     }
 };
-dynamicLoading.css("style.css");
+dynamicLoading.css("/style/style.css");
