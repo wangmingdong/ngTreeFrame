@@ -40,6 +40,8 @@ transition: all 0.5s;
     background-color: #ffffff;
     color: #000000;
     border: 1px solid #dddddd;
+    align-items: center;
+    display: flex;
 }
 
 .tree-frame li::before, .tree-frame li::after {

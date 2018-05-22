@@ -6,9 +6,6 @@
     </div>
 </div>
 <ul ng-if="item.child.length">
-    <!-- {{item.name}} -->
     <li ng-repeat="item in item.child" ng-include="'./ngTreeFrame.html'">
-        
-        <!-- <div ng-repeat="item in item.child" ng-include="'ngTreeFrame.html"></div> -->
     </li>
 </ul>

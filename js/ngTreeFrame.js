@@ -4,23 +4,18 @@
     var bd = angular.module("ng.treeFrame", []);
     /*定义全局变量*/
     bd.constant('ngTreeFrameCfg', {
-        display: 'DropDown',
-        disabled: false,
-        divider:[],
-        disabledItems: [],
-        multiSelect:[],
-        multiTitle:'',
         treeHtml: 'ngTreeFrame.html'
     });
     /*定义模板缓存默认的模板和多选模板*/
     bd.run(['$templateCache', function($templateCache){
         $templateCache.put('defaultTemplate',[
-            '<div class="tree-frame">',
+            '<div class="tree-frame" ng-if="treeData.id">',
             '<ul class="tree-frame-ul">',
             '<li class="">',
             '<div class="tree-node-title">',
             '<div class="node-menu" id="node{{treeData.id}}" ng-click="selectNode(', "'treeNodeClick'", ', treeData, $event)">',
-            '<img ng-if="item.treeFrameIcon" class="node-icon" ng-src="{{item.treeFrameIcon}}" alt="icon">',
+            '<img ng-if="!TREE_CFG_OBJ.parentIcon && item.treeFrameIcon" class="node-icon" ng-src="{{item.treeFrameIcon}}" alt="icon">',
+            '<img ng-if="TREE_CFG_OBJ.parentIcon" class="node-icon" ng-src="{{TREE_CFG_OBJ.parentIcon}}" alt="icon">',
             '{{treeData.name}}',
             '</div>',
             '</div>',
@@ -63,11 +58,11 @@
             link: function(scope, el, attr, ctrls){
                 scope._bgColorConfig = scope.bgColorConfig;
                 scope._bgColorForLevel = scope.bgColorForLevel;
-                scope.TREE_CFG_OBJ = scope.treeFrameConfig;
+                scope.TREE_CFG_OBJ = scope.treeFrameConfig || {};
 
                 // 获取dom节点
                 function getNodeById(item) {
-                    var elem = angular.element(document.getElementById('node' + item[scope.TREE_CFG_OBJ.id]));
+                    var elem = angular.element(document.getElementById('node' + scope.TREE_CFG_OBJ.id));
                     return elem;
                 }
 
@@ -103,7 +98,7 @@
 
                 // 数据格式化，添加背景色和文字色
                 function formatTreeData(nodeData) {
-                    if (nodeData.child && nodeData.child.length) {
+                    if (nodeData && nodeData.child && nodeData.child.length) {
                         var parentNode = getNodeById(nodeData);
                         if (scope._bgColorConfig) {
                             chargeColorByKey(nodeData, parentNode);
@@ -136,9 +131,13 @@
 
                 scope.init = function () {
                     // $timeout用于ng-include ngTreeFrame.html
-                    $timeout(function () {
-                        formatTreeData(scope.treeData);
-                    }, 100);
+                    scope.$watch('treeData', function (newValue, oldValue) {
+                        if (newValue) {
+                            $timeout(function () {
+                                formatTreeData(newValue);
+                            }, 100);
+                        }
+                    })
                 };
                 scope.init();
 
