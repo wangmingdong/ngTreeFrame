@@ -20,8 +20,9 @@ Angular
 ```
 
 ### API
-__treeObj__:树结构数据，是个object，只有一个顶级父。
-__treeBgColorConfig__:根据某一属性key区分背景色，例：
+>__treeObj__:树结构数据，是个object，只有一个顶级父。
+
+>__treeBgColorConfig__:根据某一属性key区分背景色，例：
 ``` js
 $scope.treeBgColorConfig = {
     key: 'type',
@@ -39,7 +40,7 @@ $scope.treeBgColorConfig = {
     ]
 };
 ```
-__bgColorForLevelConfig__:
+>__bgColorForLevelConfig__:
 根据层级关系区分背景色，除了最高父其余都同色,如：
 ``` js
 $scope.bgColorForLevelConfig = [{
@@ -50,7 +51,7 @@ $scope.bgColorForLevelConfig = [{
     color: '#000000'
 }];
 ```
-__treeFrameConfig__:
+>__treeFrameConfig__:
 各种配置字段
 ``` js
 $scope.treeFrameConfig = {
@@ -93,7 +94,7 @@ $scope.treeFrameConfig = {
     ]
 }
 ```
-__treeNodeClick__:
+>__treeNodeClick__:
 选中某一节点后的回调
 ``` js
 $scope.treeNodeClick = function (node) {
