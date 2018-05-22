@@ -80,22 +80,71 @@
                 .tree-menu{
                     // border: 1px solid #000000;
                     position: absolute;
-                    top: -50%;
-                    left: 100%;
+                    top: 0;
+                    left: 120%;
                     z-index: 9;
                     background-color: #ffffff;
+                    border-radius: 4px;
 
                     .menu-item{
                         padding: 6px 4px;
                         white-space: nowrap;
-                        border-bottom: 1px solid #dddddd;
-                        border-left: 1px solid #dddddd;
-                        border-right: 1px solid #dddddd;
+                        border-bottom: 1px solid #9ac7ff;
+                        border-left: 1px solid #9ac7ff;
+                        border-right: 1px solid #9ac7ff;
+                        transition: all .3s;
+
+                        &:hover{
+                            background-color: #4D8CFF;
+                            color: #ffffff;
+                            // color: #4D8CFF;
+                        }
 
                         &:first-of-type{
-                            border-top: 1px solid #dddddd;
+                            border-top: 1px solid #9ac7ff;
                             border-top-left-radius: 4px;
                             border-top-right-radius: 4px;
+                            
+                            // 绘制菜单小箭头
+                            &:before{
+                                border: solid #ffffff00;
+                                content: ' ';
+                                height: 0px;
+                                left: -14px;
+                                position: absolute;
+                                width: 0px;
+                                border-width: 7px;
+                                border-right-color: #9ac7fd;
+                                top: 10px;
+                                transition: all .3s;
+                            }
+                            &:after{
+                                border: solid #ffffff00;
+                                content: ' ';
+                                height: 0px;
+                                left: -11px;
+                                position: absolute;
+                                width: 0px;
+                                border-width: 6px;
+                                border-right-color: #ffffff;
+                                top: 11px;
+                                z-index: 2;
+                                transition: all .3s;
+                            }
+                            &:hover{
+                                &:after{
+                                    border: solid #ffffff00;
+                                    content: ' ';
+                                    height: 0px;
+                                    left: -11px;
+                                    position: absolute;
+                                    width: 0px;
+                                    border-width: 6px;
+                                    border-right-color: #4D8CFF;
+                                    top: 11px;
+                                    z-index: 2;
+                                }
+                            }
                         }
                         &:last-of-type{
                             border-bottom-left-radius: 4px;
