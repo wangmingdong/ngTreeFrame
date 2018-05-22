@@ -20,6 +20,7 @@ Angular
 ```
 
 ### API
+__treeObj__:树结构数据，是个object，只有一个顶级父。
 __treeBgColorConfig__:根据某一属性key区分背景色，例：
 ``` js
 $scope.treeBgColorConfig = {
