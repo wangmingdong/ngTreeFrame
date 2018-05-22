@@ -20,7 +20,7 @@ Angular
 ```
 
 ### API
-__treeBgColorConfig__:根据某一属性key区分背景色，例：
+__treeBgColorConfig__:根据某一属性key区分背景色，例：
 ``` js
 $scope.treeBgColorConfig = {
     key: 'type',
