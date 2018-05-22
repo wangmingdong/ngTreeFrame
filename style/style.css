@@ -8,7 +8,8 @@
   margin: 0;
   padding: 10px;
   list-style: none;
-  overflow: scroll; }
+  overflow: scroll;
+  font-size: 14px; }
   .tree-frame > ul > li {
     display: block;
     margin: 0 auto; }
