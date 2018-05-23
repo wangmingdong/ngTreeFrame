@@ -26,7 +26,7 @@
                                 '<div class="menu-item" ng-repeat="menuItem in _treeConfigObj.menuConfig" ng-click="selectMenu(treeData, menuItem)">{{menuItem.text}}</div>',
                             '</div>',
                         '</div>',
-                        '<ul class="ng-tree-frame">',
+                        '<ul class="ng-tree-frame" ng-if="treeData.child.length">',
                             '<li ng-repeat="item in treeData.child" ng-include="', "'",'./../html/ngTreeFrame.html', "'",'"></li>',
                         '</ul>',
                     '</li>',
@@ -117,19 +117,22 @@
                         if (scope._treeConfigObj.icon) {
                             nodeData.treeFrameIcon = nodeData[scope._treeConfigObj.icon];
                         }
+                        nodeData.id = nodeData[scope._treeConfigObj.id || 'id'];
+                        nodeData.parentId = nodeData[scope._treeConfigObj.parentId || 'parentId'];
+                        nodeData.child = nodeData[scope._treeConfigObj.child || 'child'] || [];
                         for (var i = 0; i < nodeData.child.length; i++) {
                             if (nodeData.child[i]) {
-                                var $ele = getNodeById(nodeData.child[i]);
-                                if (scope._bgColorConfig) {
-                                    chargeColorByKey(nodeData.child[i], $ele);
-                                }
-                                if (scope._bgColorForLevel) {
-                                    chargeColorByLevel(nodeData.child[i], $ele);
-                                }
-                                // icon赋值
-                                if (scope._treeConfigObj.icon) {
-                                    nodeData.child[i].treeFrameIcon = nodeData.child[i][scope._treeConfigObj.icon];
-                                }
+                                // var $ele = getNodeById(nodeData.child[i]);
+                                // if (scope._bgColorConfig) {
+                                //     chargeColorByKey(nodeData.child[i], $ele);
+                                // }
+                                // if (scope._bgColorForLevel) {
+                                //     chargeColorByLevel(nodeData.child[i], $ele);
+                                // }
+                                // // icon赋值
+                                // if (scope._treeConfigObj.icon) {
+                                //     nodeData.child[i].treeFrameIcon = nodeData.child[i][scope._treeConfigObj.icon];
+                                // }
                                 // console.log(nodeData.child[i])
                                 fmtTreeData(nodeData.child[i]);
                             }

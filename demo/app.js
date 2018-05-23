@@ -24,7 +24,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "des":"",
                                                 "id":999,
                                                 "name":"999",
-                                                "parentId":777,
+                                                "parentCode":777,
                                                 "type":0,
                                                 "userName":""
                                             },
@@ -33,7 +33,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "des":"",
                                                 "id":666,
                                                 "name":"666",
-                                                "parentId":777,
+                                                "parentCode":777,
                                                 "type":0,
                                                 "userName":""
                                             },
@@ -42,7 +42,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "des":"",
                                                 "id":66236,
                                                 "name":"62366",
-                                                "parentId":777,
+                                                "parentCode":777,
                                                 "type":0,
                                                 "userName":""
                                             }
@@ -50,7 +50,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                         "des":"",
                                         "id":777,
                                         "name":"7777",
-                                        "parentId":466,
+                                        "parentCode":466,
                                         "type":0,
                                         "userName":""
                                     },
@@ -61,7 +61,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "des":"",
                                                 "id":6664,
                                                 "name":"666",
-                                                "parentId":777,
+                                                "parentCode":777,
                                                 "type":0,
                                                 "userName":""
                                             },
@@ -70,7 +70,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "des":"",
                                                 "id":6663,
                                                 "name":"666",
-                                                "parentId":777,
+                                                "parentCode":777,
                                                 "type":1,
                                                 "userName":""
                                             },
@@ -79,7 +79,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "des":"",
                                                 "id":6626,
                                                 "name":"666",
-                                                "parentId":777,
+                                                "parentCode":777,
                                                 "type":0,
                                                 "userName":""
                                             },
@@ -88,7 +88,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "des":"",
                                                 "id":662326,
                                                 "name":"666",
-                                                "parentId":777,
+                                                "parentCode":777,
                                                 "type":0,
                                                 "userName":""
                                             }
@@ -96,7 +96,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                         "des":"",
                                         "id":6566,
                                         "name":"666",
-                                        "parentId":777,
+                                        "parentCode":777,
                                         "type":1,
                                         "userName":""
                                     }
@@ -104,7 +104,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                 "des":"",
                                 "id":466,
                                 "name":"123",
-                                "parentId":465,
+                                "parentCode":465,
                                 "type":0,
                                 "userName":""
                             },
@@ -113,7 +113,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                 "des":"",
                                 "id":542,
                                 "name":"54223",
-                                "parentId":465,
+                                "parentCode":465,
                                 "type":0,
                                 "userName":""
                             }
@@ -121,7 +121,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                         "des":"",
                         "id":465,
                         "name":"3333",
-                        "parentId":464,
+                        "parentCode":464,
                         "type":0,
                         "userName":""
                     },
@@ -130,7 +130,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                         "des":"",
                         "id":467,
                         "name":"444",
-                        "parentId":464,
+                        "parentCode":464,
                         "type":0,
                         "userName":"",
                         "icon": './../icon.png'
@@ -139,7 +139,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                 "des":"123",
                 "id":464,
                 "name":"213",
-                "parentId":0,
+                "parentCode":0,
                 "type":0,
                 "userName":"",
                 "icon": './../icon.png'
@@ -190,7 +190,7 @@ angular.module("demoApp", ['ngTreeFrame'])
         // 配置字段
         $scope.treeFrameConfig = {
             id: 'id',
-            parentId: 'parentId',   // 父节点唯一标识
+            parentId: 'parentCode',   // 父节点唯一标识
             icon: 'icon',
             parentIcon: './../icon.png',
             formatTreeData: function(treeData) {

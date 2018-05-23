@@ -20,6 +20,7 @@
     display: -moz-flex;
     display: -ms-flexbox;
     display: flex;
+    justify-content: center;
     position: relative;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
