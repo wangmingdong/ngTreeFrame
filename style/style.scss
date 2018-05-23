@@ -5,7 +5,7 @@
     margin: 0;
     // padding: 10px;
     list-style: none;
-    overflow: auto; 
+    // overflow: auto; 
     font-size: 14px;
     height: 100%;
 
@@ -60,6 +60,10 @@
                     color: #4A4A4A;
                     background-color: #D2E6FF;
                     transition: all .3s;
+
+                    &.ng-leave{
+                        
+                    }
 
                     .node-icon{
                         width: 16px;

@@ -228,7 +228,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                 {
                     text: '删除',
                     callback: function(node) {
-
+                        
                     }
                 },
             ]

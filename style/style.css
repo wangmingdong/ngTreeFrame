@@ -7,7 +7,6 @@
 .tree-frame {
   margin: 0;
   list-style: none;
-  overflow: auto;
   font-size: 14px;
   height: 100%; }
   .tree-frame > ul > li {
