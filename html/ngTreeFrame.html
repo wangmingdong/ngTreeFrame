@@ -10,7 +10,7 @@
          'fadeInLeft': selectNodeData.id == item.id && !item.disableTreeMenu && !hideMenu
         }"
           ng-if="selectNodeData.id == item.id && !item.disableTreeMenu" ng-hide="hideMenu">
-        <div class="menu-item" ng-repeat="menuItem in _treeConfigObj.menuConfig" ng-click="selectMenu(item, menuItem)">{{menuItem.text}}</div>
+        <div class="menu-item" ng-repeat="menuItem in _treeConfigObj.menuConfig" ng-if="menuItem.isVisible" ng-click="selectMenu(item, menuItem)">{{menuItem.text}}</div>
     </div>
 </div>
 <ul ng-if="item.child.length">

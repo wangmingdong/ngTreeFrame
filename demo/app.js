@@ -32,7 +32,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "child":[],
                                                 "des":"",
                                                 "id":666,
-                                                "name":"666",
+                                                "name":"没有菜单1",
                                                 "parentCode":777,
                                                 "type":0,
                                                 "userName":""
@@ -60,8 +60,8 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "child":[],
                                                 "des":"",
                                                 "id":6664,
-                                                "name":"666",
-                                                "parentCode":777,
+                                                "name":"没有菜单2",
+                                                "parentCode":6566,
                                                 "type":0,
                                                 "userName":""
                                             },
@@ -69,8 +69,8 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "child":[],
                                                 "des":"",
                                                 "id":6663,
-                                                "name":"666",
-                                                "parentCode":777,
+                                                "name":"没有菜单3",
+                                                "parentCode":6566,
                                                 "type":1,
                                                 "userName":""
                                             },
@@ -79,7 +79,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "des":"",
                                                 "id":6626,
                                                 "name":"666",
-                                                "parentCode":777,
+                                                "parentCode":6566,
                                                 "type":0,
                                                 "userName":""
                                             },
@@ -88,7 +88,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                                 "des":"",
                                                 "id":662326,
                                                 "name":"666",
-                                                "parentCode":777,
+                                                "parentCode":6566,
                                                 "type":0,
                                                 "userName":""
                                             }
@@ -96,7 +96,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                         "des":"",
                                         "id":6566,
                                         "name":"666",
-                                        "parentCode":777,
+                                        "parentCode":466,
                                         "type":1,
                                         "userName":""
                                     }
@@ -121,7 +121,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                         "des":"",
                         "id":465,
                         "name":"3333",
-                        "parentCode":464,
+                        "parentCode":123,
                         "type":0,
                         "userName":""
                     },
@@ -130,14 +130,14 @@ angular.module("demoApp", ['ngTreeFrame'])
                         "des":"",
                         "id":467,
                         "name":"444",
-                        "parentCode":464,
+                        "parentCode":123,
                         "type":0,
                         "userName":"",
                         "icon": './../icon.png'
                     }
                 ],
                 "des":"123",
-                "id":464,
+                "id":123,
                 "name":"213",
                 "parentCode":0,
                 "type":0,
@@ -175,14 +175,20 @@ angular.module("demoApp", ['ngTreeFrame'])
             color: '#000000'
         }];
 
+
         // 格式化数据(递归)
-        function fmtTreeData(treeData) {
+        function fmtTreeData(treeData, id, callback) {
+            if (id) {
+                if (treeData.id == id) {
+                    callback(treeData);
+                }
+            }
             if (treeData.child && treeData.child.length) {
                 for (var i = 0; i < treeData.child.length; i++) {
                     if (new RegExp('^666').test(treeData.child[i].id)) {
                         treeData.child[i].disableTreeMenu = true;
                     }
-                    fmtTreeData(treeData.child[i]);
+                    fmtTreeData(treeData.child[i], id, callback);
                 }
             }
         }
@@ -192,6 +198,10 @@ angular.module("demoApp", ['ngTreeFrame'])
             id: 'id',
             parentId: 'parentCode',   // 父节点唯一标识
             icon: 'icon',
+            name: 'name',
+            formatName: function(node) {
+                return node.id;
+            },
             parentIcon: './../icon.png',
             formatTreeData: function(treeData) {
                 // 对于不显示菜单的字段配置 disableTreeMenu: true
@@ -202,35 +212,86 @@ angular.module("demoApp", ['ngTreeFrame'])
             // 菜单配置
             menuConfig:[
                 {
-                    text: '创建子机构',
+                    text: '创建机构',
+                    visible: function(node) {
+                        return node.parentId == 0;
+                    },
                     callback: function(node) {
-                        console.log(node)
+                        fmtTreeData($scope.treeObj, node.id, function(data) {
+                            if (!data.child || !data.child.length) {
+                                data.child = [];
+                            }
+                            data.child.push({
+                                id: parseInt(Math.random()*100000),
+                                name: '新增',
+                                parentId: node.id
+                            })
+                        });
+                    }
+                },
+                {
+                    text: '创建子机构',
+                    visible: function(node) {
+                        return node.parentId != 0;
+                    },
+                    callback: function(node) {
+                        fmtTreeData($scope.treeObj, node.id, function(data) {
+                            if (!data.child || !data.child.length) {
+                                data.child = [];
+                            }
+                            data.child.push({
+                                id: parseInt(Math.random()*100000),
+                                name: '新增',
+                                parentId: node.id
+                            })
+                        });
                     }
                 },
                 {
                     text: '园所管理',
+                    visible: function(node) {
+                        return node.parentId != 0;
+                    },
                     callback: function(node) {
 
                     }
                 },
                 {
                     text: '查看',
+                    visible: function(node) {
+                        return node.parentId != 0;
+                    },
                     callback: function(node) {
 
                     }
                 },
                 {
                     text: '编辑',
+                    visible: function(node) {
+                        return node.parentId != 0;
+                    },
                     callback: function(node) {
-
+                        fmtTreeData($scope.treeObj, node.id, function(data) {
+                            data.name = '修改';
+                        });
                     }
                 },
                 {
                     text: '删除',
+                    visible: function(node) {
+                        return node.parentId != 0;
+                    },
                     callback: function(node) {
-                        
+                        fmtTreeData($scope.treeObj, node.parentCode, function(data) {
+                            for (var i = 0; i < data.child.length; i++) {
+                                if (data.child[i].id == node.id) {
+                                    data.child.splice(i, 1);
+                                    break;
+                                }
+                            }
+                        });
                     }
-                },
+                }
             ]
         }
 

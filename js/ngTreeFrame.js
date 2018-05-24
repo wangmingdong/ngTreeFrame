@@ -23,7 +23,7 @@
                                 "'fadeInLeft': selectNodeData.id == treeData.id && !treeData.disableTreeMenu && !hideMenu",
                                '}"',
                                 'ng-if="selectNodeData.id == treeData.id && !treeData.disableTreeMenu" ng-hide="hideMenu">',
-                                '<div class="menu-item" ng-repeat="menuItem in _treeConfigObj.menuConfig" ng-click="selectMenu(treeData, menuItem)">{{menuItem.text}}</div>',
+                                '<div class="menu-item" ng-repeat="menuItem in _treeConfigObj.menuConfig" ng-if="menuItem.isVisible" ng-click="selectMenu(treeData, menuItem)">{{menuItem.text}}</div>',
                             '</div>',
                         '</div>',
                         '<ul class="ng-tree-frame" ng-if="treeData.child.length">',
@@ -39,8 +39,19 @@
 			
             // 选中节点的callback,获取选中节点数据
             $scope.selectNode = function(callback, item, $event){
+                if ($scope._treeConfigObj && $scope._treeConfigObj.menuConfig) {
+                    var _menuConfig = $scope._treeConfigObj.menuConfig;
+                    // 用户点击节点，需要弹出菜单时判断可见或不可见
+                    for (var i = 0; i < _menuConfig.length; i++) {
+                        if (_menuConfig[i].visible) {
+                            _menuConfig[i].isVisible = _menuConfig[i].visible(item);
+                        } else {
+                            _menuConfig[i].isVisible = true;
+                        }
+                    }
+                }
                 $scope.selectNodeData = item;
-				($scope[callback] || angular.noop)(item, $event);
+                ($scope[callback] || angular.noop)(item, $event);
 			};
         }]);
     /*自定义指令，包装生成数据规格*/
@@ -106,7 +117,7 @@
 
                 // 数据格式化，添加背景色和文字色
                 function fmtTreeData(nodeData) {
-                    if (nodeData && nodeData.child && nodeData.child.length) {
+                    if (nodeData) {
                         var parentNode = getNodeById(nodeData);
                         if (scope._bgColorConfig) {
                             chargeColorByKey(nodeData, parentNode);
@@ -118,23 +129,18 @@
                             nodeData.treeFrameIcon = nodeData[scope._treeConfigObj.icon];
                         }
                         nodeData.id = nodeData[scope._treeConfigObj.id || 'id'];
+                        nodeData.name = nodeData[scope._treeConfigObj.name || 'name'];
                         nodeData.parentId = nodeData[scope._treeConfigObj.parentId || 'parentId'];
                         nodeData.child = nodeData[scope._treeConfigObj.child || 'child'] || [];
-                        for (var i = 0; i < nodeData.child.length; i++) {
-                            if (nodeData.child[i]) {
-                                // var $ele = getNodeById(nodeData.child[i]);
-                                // if (scope._bgColorConfig) {
-                                //     chargeColorByKey(nodeData.child[i], $ele);
-                                // }
-                                // if (scope._bgColorForLevel) {
-                                //     chargeColorByLevel(nodeData.child[i], $ele);
-                                // }
-                                // // icon赋值
-                                // if (scope._treeConfigObj.icon) {
-                                //     nodeData.child[i].treeFrameIcon = nodeData.child[i][scope._treeConfigObj.icon];
-                                // }
-                                // console.log(nodeData.child[i])
-                                fmtTreeData(nodeData.child[i]);
+                        // 格式化name
+                        if (scope._treeConfigObj.formatName) {
+                            nodeData.name = scope._treeConfigObj.formatName(nodeData);
+                        }
+                        if (nodeData.child && nodeData.child.length) {
+                            for (var i = 0; i < nodeData.child.length; i++) {
+                                if (nodeData.child[i]) {
+                                    fmtTreeData(nodeData.child[i]);
+                                }
                             }
                         }
                     }
