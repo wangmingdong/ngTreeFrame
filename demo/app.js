@@ -200,7 +200,7 @@ angular.module("demoApp", ['ngTreeFrame'])
             icon: 'icon',
             name: 'name',
             formatName: function(node) {
-                return node.id;
+                return node.name;
             },
             parentIcon: './../icon.png',
             formatTreeData: function(treeData) {
@@ -239,9 +239,10 @@ angular.module("demoApp", ['ngTreeFrame'])
                             if (!data.child || !data.child.length) {
                                 data.child = [];
                             }
+                            var tempId = parseInt(Math.random()*100000);
                             data.child.push({
-                                id: parseInt(Math.random()*100000),
-                                name: '新增',
+                                id: tempId,
+                                name: '新增' + tempId,
                                 parentId: node.id
                             })
                         });
@@ -282,7 +283,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                         return node.parentId != 0;
                     },
                     callback: function(node) {
-                        fmtTreeData($scope.treeObj, node.parentCode, function(data) {
+                        fmtTreeData($scope.treeObj, node.parentId, function(data) {
                             for (var i = 0; i < data.child.length; i++) {
                                 if (data.child[i].id == node.id) {
                                     data.child.splice(i, 1);
