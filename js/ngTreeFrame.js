@@ -16,7 +16,7 @@
                             '<div ng-class="{', "'node-menu': true, 'selected': selectNodeData.id == treeData.id}", '" id="node{{treeData.id}}" ng-click="selectNode(', "'treeNodeClick'", ', treeData, $event)">',
                                 '<img ng-if="!_treeConfigObj.parentIcon && item.treeFrameIcon" class="node-icon" ng-src="{{item.treeFrameIcon}}" alt="icon">',
                                 '<img ng-if="_treeConfigObj.parentIcon" class="node-icon" ng-src="{{_treeConfigObj.parentIcon}}" alt="icon">',
-                                '{{treeData.name}}',
+                                '{{treeData.nodeName}}',
                             '</div>',
                             '<div ng-class="{',
                                 "'tree-menu': true,",
@@ -134,7 +134,7 @@
                         nodeData.child = nodeData[scope._treeConfigObj.child || 'child'] || [];
                         // 格式化name
                         if (scope._treeConfigObj.formatName) {
-                            nodeData.name = scope._treeConfigObj.formatName(nodeData);
+                            nodeData.nodeName = scope._treeConfigObj.formatName(nodeData);
                         }
                         if (nodeData.child && nodeData.child.length) {
                             for (var i = 0; i < nodeData.child.length; i++) {
@@ -176,6 +176,10 @@
                     })
                 };
                 scope.init();
+
+                scope.$on('refreshNgTreeFrame', function(event, val) {
+                    fmtTreeData(val)
+                })
 
             },
             restrict: "AE"

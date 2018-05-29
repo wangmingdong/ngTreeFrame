@@ -246,6 +246,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                                 parentId: node.id
                             })
                         });
+                        $scope.$broadcast('refreshNgTreeFrame', $scope.treeObj);
                     }
                 },
                 {
@@ -254,7 +255,7 @@ angular.module("demoApp", ['ngTreeFrame'])
                         return node.parentId != 0;
                     },
                     callback: function(node) {
-
+                        console.log(node)
                     }
                 },
                 {
@@ -273,7 +274,9 @@ angular.module("demoApp", ['ngTreeFrame'])
                     },
                     callback: function(node) {
                         fmtTreeData($scope.treeObj, node.id, function(data) {
-                            data.name = '修改';
+                            var tempId = parseInt(Math.random()*100000);
+                            data.name = '修改' + tempId;
+                            $scope.$broadcast('refreshNgTreeFrame', data);
                         });
                     }
                 },

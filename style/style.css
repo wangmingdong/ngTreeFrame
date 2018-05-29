@@ -9,6 +9,14 @@
   list-style: none;
   font-size: 14px;
   height: 100%; }
+  .tree-frame div, .tree-frame ul, .tree-frame li {
+    -webkit-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+    -webkit-transition: 1000ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+    -moz-transition: 1000ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+    -ms-transition: 1000ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+    -o-transition: 1000ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+    transition: 1000ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all; }
   .tree-frame > ul > li {
     display: block;
     margin: 0 auto; }
@@ -20,8 +28,8 @@
     display: -moz-flex;
     display: -ms-flexbox;
     display: flex;
-    justify-content: center;
     position: relative;
+    justify-content: center;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s; }
