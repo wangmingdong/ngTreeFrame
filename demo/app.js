@@ -195,14 +195,13 @@ angular.module("demoApp", ['ngTreeFrame'])
 
         // 配置字段
         $scope.treeFrameConfig = {
-            id: 'id',
-            parentId: 'parentCode',   // 父节点唯一标识
-            icon: 'icon',
-            name: 'name',
-            formatName: function(node) {
+            id: 'id',   // 唯一标识字段（不能重复）
+            parentId: 'parentId',   // 父节点唯一标识
+            icon: 'icon',   // 若果有图标，则显示icon的图片
+            parentIcon: './../icon.png',    // 顶级父节点ico
+            formatName: function(node) {    // 格式化节点的名称
                 return node.name;
             },
-            parentIcon: './../icon.png',
             formatTreeData: function(treeData) {
                 // 对于不显示菜单的字段配置 disableTreeMenu: true
                 fmtTreeData(treeData);
@@ -213,7 +212,7 @@ angular.module("demoApp", ['ngTreeFrame'])
             menuConfig:[
                 {
                     text: '创建机构',
-                    visible: function(node) {
+                    visible: function(node) {   // 该菜单是否显示
                         return node.parentId == 0;
                     },
                     callback: function(node) {
@@ -301,6 +300,6 @@ angular.module("demoApp", ['ngTreeFrame'])
 
         // 选中的节点
         $scope.treeNodeClick = function (node) {
-            console.log(node);
+            console.log(node.name);
         };
     });
