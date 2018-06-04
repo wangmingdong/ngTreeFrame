@@ -10,6 +10,10 @@
 Angular
 
 ### 使用
+引入js
+``` html
+<script src="./../js/ngTreeFrame.js"></script>
+```
 ``` html
 <tree-frame tree-data="treeObj"
     bg-color-config="treeBgColorConfig"
@@ -18,9 +22,58 @@ Angular
     tree-node-click="treeNodeClick">
 </tree-frame>
 ```
+``` js
+// 注入 ngTreeFrame
+angular.module("demoApp", ['ngTreeFrame'])
+    .controller("DemoController", function($scope){
+        // ...
+    })
+```
 
 ### 参数
 * __treeObj__:树结构数据，是个object，只有一个顶级父。
+``` js
+$scope.treeObj = {
+    "child":[
+        {
+            "child":[
+                {
+                    "child":[],
+                    "des":"",
+                    "id":542,
+                    "name":"54223",
+                    "parentCode":465,
+                    "type":0,
+                    "userName":""
+                }
+            ],
+            "des":"",
+            "id":465,
+            "name":"3333",
+            "parentCode":123,
+            "type":0,
+            "userName":""
+        },
+        {
+            "child":[],
+            "des":"",
+            "id":467,
+            "name":"444",
+            "parentCode":123,
+            "type":0,
+            "userName":"",
+            "icon": './../icon.png'
+        }
+    ],
+    "des":"123",
+    "id":123,
+    "name":"213",
+    "parentCode":0,
+    "type":0,
+    "userName":"",
+    "icon": './../icon.png'
+};
+```
 
 * __treeBgColorConfig__:根据某一属性key区分背景色，例：
 ``` js
