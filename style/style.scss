@@ -32,7 +32,7 @@
         display: -ms-flexbox;
         display: flex;
         position: relative;
-        justify-content: center;
+        // justify-content: center;
         transition: all 0.5s;
         -webkit-transition: all 0.5s;
         -moz-transition: all 0.5s; 
@@ -44,8 +44,8 @@
         li {
             float: none;
             /* float: left; */
-            // margin-left: auto;
-            // margin-right: auto;
+            margin-left: auto;
+            margin-right: auto;
             text-align: center;
             list-style-type: none;
             position: relative;
