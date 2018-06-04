@@ -10,6 +10,10 @@
 Angular
 
 ### 使用
+引入js
+``` html
+<script src="./../js/ngTreeFrame.js"></script>
+```
 ``` html
 <tree-frame tree-data="treeObj"
     bg-color-config="treeBgColorConfig"
@@ -17,6 +21,13 @@ Angular
     tree-frame-config="treeFrameConfig"
     tree-node-click="treeNodeClick">
 </tree-frame>
+```
+``` js
+// 注入 ngTreeFrame
+angular.module("demoApp", ['ngTreeFrame'])
+    .controller("DemoController", function($scope){
+        // ...
+    })
 ```
 
 ### 参数
