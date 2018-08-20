@@ -81,7 +81,7 @@
 
                 // 获取dom节点
                 function getNodeById(item) {
-                    var elem = angular.element(document.getElementById('node' + scope._treeConfigObj.id));
+                    var elem = angular.element(document.getElementById('node' + item.id));
                     return elem;
                 }
 
